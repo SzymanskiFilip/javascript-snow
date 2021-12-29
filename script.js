@@ -1,5 +1,4 @@
 /** @type {HTMLCanvasElement} */ //canvas intellisense
-import Snowflake from "./Snowflake.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -14,32 +13,49 @@ canvas.addEventListener("resize", function(){
 });
 
 
-
-
-
-
-
-
-
 //SNOWFLAKE
 class Snowflake{
     constructor(){
         this.x = Math.random() * canvas.width;
         this.y = 0;
-        this.size = 20;
+        this.size = 10;
         this.speedY = Math.random() * 2;
         this.speedX = undefined;
     }
 
     //Ticking changes the position
-    tick(){
-
+    update(){
+        this.x = this.x;
+        this.y += this.speedY;
     }
 
     //Rendering draws the snowflake on the canvas
     render(){
-        //ctx.fillStyle = "pink";
-        //ctx.rect(30,20,100,100);
-        //ctx.fill();
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.rect(this.x,this.y,this.size,this.size);
+        ctx.fill();
     }
 }
+
+function initializeSnowflakes(){
+    for(let i = 0; i < 20; i++){
+        snowflakesArray.push(new Snowflake());
+    }
+}
+initializeSnowflakes();
+
+
+function tick(){
+    for(let i = 0; i < snowflakesArray.length; i++){
+        snowflakesArray[i].render();
+        snowflakesArray[i].update();
+    }
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    tick();
+    requestAnimationFrame(animate);
+}
+animate();
