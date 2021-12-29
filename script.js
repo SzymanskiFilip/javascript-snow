@@ -17,7 +17,7 @@ canvas.addEventListener("resize", function(){
 class Snowflake{
     constructor(){
         this.x = Math.random() * canvas.width;
-        this.y = 0;
+        this.y = -100;
         this.size = 10;
         this.speedY = Math.random() * 1 + 0.5;
         this.speedX = undefined;
@@ -38,22 +38,21 @@ class Snowflake{
     }
 }
 
+function addSnowflake(){
+    snowflakesArray.push(new Snowflake());
+}
+
 function initializeSnowflakes(){
     for(let i = 0; i < 20; i++){
         snowflakesArray.push(new Snowflake());
     }
+    setInterval(addSnowflake, 300);
 }
 initializeSnowflakes();
 
 
 function tick(){
     for(let i = 0; i < snowflakesArray.length; i++){
-
-        if(snowflakesArray[i].y > canvas.height){
-            console.log("fell off");
-            snowflakesArray.splice(i, 1);
-        }
-
         snowflakesArray[i].render();
         snowflakesArray[i].update();
     }
