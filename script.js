@@ -19,7 +19,7 @@ class Snowflake{
         this.x = Math.random() * canvas.width;
         this.y = 0;
         this.size = 10;
-        this.speedY = Math.random() * 2;
+        this.speedY = Math.random() * 1 + 0.5;
         this.speedX = undefined;
     }
 
@@ -48,6 +48,12 @@ initializeSnowflakes();
 
 function tick(){
     for(let i = 0; i < snowflakesArray.length; i++){
+
+        if(snowflakesArray[i].y > canvas.height){
+            console.log("fell off");
+            snowflakesArray.splice(i, 1);
+        }
+
         snowflakesArray[i].render();
         snowflakesArray[i].update();
     }
