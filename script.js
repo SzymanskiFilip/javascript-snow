@@ -49,7 +49,7 @@ function initializeSnowflakes(){
     for(let i = 0; i < 20; i++){
         snowflakesArray.push(new Snowflake());
     }
-    setInterval(addSnowflake, 100);
+    setInterval(addSnowflake, 10);
 }
 initializeSnowflakes();
 
