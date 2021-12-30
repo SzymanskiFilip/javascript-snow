@@ -21,16 +21,14 @@ class Snowflake{
     constructor(){
         this.x = Math.random() * canvas.width;
         this.y = -100;
-        //TODO: CREATE RANDOM SNOWFLAKE SIZE
         this.size = Math.random() * 10 + 4;
         this.speedY = this.size / 5;
-        this.speedX = undefined;
+        this.speedX = Math.random() * 0.5 - 0.5;
     }
 
     //Ticking changes the position
     update(){
-        //TODO: FIGURE OUT HOW TO CHANGE X LIKE IT IS WINDY
-        this.x = this.x;
+        this.x += this.speedX;
         this.y += this.speedY;
     }
 
@@ -51,15 +49,13 @@ function initializeSnowflakes(){
     for(let i = 0; i < 20; i++){
         snowflakesArray.push(new Snowflake());
     }
-    setInterval(addSnowflake, 200);
+    setInterval(addSnowflake, 100);
 }
 initializeSnowflakes();
 
 
 function tick(){
     for(let i = 0; i < snowflakesArray.length; i++){
-        //TODO: create function that changes speed of the x and y axis
-        //of the object
         snowflakesArray[i].render();
         snowflakesArray[i].update();
     }
