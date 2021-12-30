@@ -22,8 +22,8 @@ class Snowflake{
         this.x = Math.random() * canvas.width;
         this.y = -100;
         //TODO: CREATE RANDOM SNOWFLAKE SIZE
-        this.size = 10;
-        this.speedY = Math.random() * 1 + 0.5;
+        this.size = Math.random() * 10 + 4;
+        this.speedY = this.size / 5;
         this.speedX = undefined;
     }
 
